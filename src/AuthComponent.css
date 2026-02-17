@@ -1,0 +1,99 @@
+.lux-auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.lux-auth-card {
+    background: rgba(16, 12, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 49, 49, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.lux-auth-title {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.lux-auth-subtitle {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.lux-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lux-input-group input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.lux-input-group input:focus {
+    border-color: #ff3131;
+    box-shadow: 0 0 15px rgba(255, 49, 49, 0.2);
+}
+
+.lux-auth-btn {
+    background: linear-gradient(135deg, #ff3131, #ff914d);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.lux-auth-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 49, 49, 0.4);
+}
+
+.lux-auth-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.lux-auth-toggle {
+    margin-top: 25px;
+    color: #666;
+    font-size: 14px;
+}
+
+.lux-auth-toggle span {
+    color: #ff3131;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 5px;
+}
+
+.lux-auth-toggle span:hover {
+    color: #ff914d;
+}

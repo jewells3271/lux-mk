@@ -1,0 +1,369 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --lux-primary: #ff3131;
+  --lux-secondary: #ff914d;
+  --lux-accent: #ffde59;
+  --lux-bg: rgba(16, 12, 26, 0.95);
+  --lux-glass: rgba(255, 255, 255, 0.07);
+  --lux-text: #ffffff;
+}
+
+.lux-widget-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  font-family: 'Inter', sans-serif;
+}
+
+.lux-float-btn {
+  background: linear-gradient(135deg, var(--lux-primary), var(--lux-secondary));
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 49, 49, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.lux-float-btn:hover {
+  box-shadow: 0 0 20px rgba(255, 49, 49, 0.6);
+  transform: scale(1.05);
+}
+
+.lux-chat-window {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 450px;
+  /* Increased to accommodate side image */
+  height: 550px;
+  background: var(--lux-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--lux-glass);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  display: flex;
+  /* Horizontal layout for image + chat */
+  overflow: hidden;
+}
+
+/* Side Image Panel */
+.lux-side-panel {
+  width: 80px;
+  height: 100%;
+  border-right: 1px solid var(--lux-glass);
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lux-side-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.lux-chat-window:hover .lux-side-img {
+  opacity: 1;
+}
+
+.lux-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.lux-header {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--lux-glass);
+}
+
+.lux-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lux-avatar {
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--lux-primary);
+  box-shadow: 0 0 10px rgba(255, 49, 49, 0.2);
+}
+
+.lux-title {
+  margin: 0;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+}
+
+.lux-status {
+  font-size: 10px;
+  color: #888;
+}
+
+.status-indicator {
+  color: #00ff88;
+}
+
+.status-indicator.active {
+  color: var(--lux-accent);
+  text-shadow: 0 0 5px var(--lux-accent);
+}
+
+.lux-header-right {
+  display: flex;
+  gap: 8px;
+}
+
+.lux-icon-btn {
+  background: transparent;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+.lux-icon-btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.lux-icon-btn.active {
+  color: var(--lux-secondary);
+}
+
+.lux-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lux-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.lux-messages::-webkit-scrollbar-thumb {
+  background: var(--lux-glass);
+  border-radius: 2px;
+}
+
+.lux-message {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.lux-message.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--lux-primary), var(--lux-secondary));
+  color: white;
+  border-bottom-right-radius: 2px;
+  box-shadow: 0 4px 12px rgba(255, 49, 49, 0.15);
+}
+
+.lux-message.assistant {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--lux-text);
+  border-bottom-left-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.lux-input-area {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid var(--lux-glass);
+}
+
+.lux-input-area input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 14px;
+  border-radius: 20px;
+  color: white;
+  outline: none;
+  font-family: inherit;
+  transition: 0.3s;
+}
+
+.lux-input-area input:focus {
+  border-color: var(--lux-primary);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.lux-input-area button {
+  background: var(--lux-primary);
+  color: black;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.lux-input-area button:disabled {
+  background: #333;
+  cursor: not-allowed;
+}
+
+.lux-footer {
+  padding: 5px 15px 10px;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lux-token-ticker {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 9px;
+  color: #666;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+
+.lux-token-ticker .divider {
+  color: #333;
+}
+
+.lux-authorized {
+  text-align: center;
+  font-size: 9px;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Typing Indicator */
+.typing-indicator span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #aaa;
+  border-radius: 50%;
+  margin: 0 2px;
+  animation: typing 1s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Signup Gate Styles */
+.lux-signup-gate {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.lux-signup-form {
+  flex: 1;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.lux-signup-form p {
+  font-size: 14px;
+  color: var(--lux-text);
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.lux-signup-form input {
+  width: 100%;
+  max-width: 280px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.lux-signup-form input:focus {
+  border-color: var(--lux-primary);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.lux-signup-form button {
+  margin-top: 10px;
+  width: 100%;
+  max-width: 280px;
+  background: var(--lux-primary);
+  color: black;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.lux-signup-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 255, 255, 0.4);
+}

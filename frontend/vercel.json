@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/((?!lux-widget\\.js|lux-identity\\.js|lux-loader\\.js|assets/|vite\\.svg).*)",
+            "destination": "/"
+        }
+    ]
+}
