@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 # Hostinger MySQL Connection
 # Format: mysql+pymysql://username:password@host/dbname
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://u649168233_lux:Revolution2026/@sql.freedb.tech/u649168233_revolution"
+DATABASE_URL="mysql+pymysql://u649168233_lux:Revolution_100@82.197.82.158/u649168233_revolution"
 # Note: Host usually needs to be specific. Assuming 'sql.freedb.tech' or similar if external, 
 # but for Hostinger usually 'localhost' if running ON Hostinger, or a specific IP if remote.
 # Since the user gave 'u649168233_', this looks like Hostinger Shared Hosting.

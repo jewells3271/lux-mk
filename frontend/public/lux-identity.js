@@ -1,7 +1,7 @@
 
 (function () {
     // Lux Identity Registry - Robust Loader v3.1
-    const WIDGET_URL = "https://revolution-frontend-zeta.vercel.app/?mode=identity";
+    const WIDGET_URL = "lux-mk-frontend-cr53.vercel.app";
 
     if (document.getElementById('lux-identity-container')) return;
 
