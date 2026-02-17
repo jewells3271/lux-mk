@@ -3,39 +3,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
 import uvicorn
-import contextlib
 
 from .database import engine, Base
 from .api import router as api_router
 
-@contextlib.asynccontextmanager
-async def lifespan(app: FastAPI):
-    # 1. Safe Database Tables Creation
-    try:
-        Base.metadata.create_all(bind=engine)
-    except Exception as e:
-        print(f"Startup DB Error: {e}")
+# Create Database Tables
+Base.metadata.create_all(bind=engine)
 
-    # 2. Self-healing Schema: Ensure password_hash exists in User table
-    try:
-        from sqlalchemy import text
-        with engine.connect() as conn:
-            try:
-                # Check if password_hash exists in users
-                conn.execute(text("SELECT password_hash FROM users LIMIT 1"))
-            except Exception:
-                try:
-                    # Add it if missing
-                    conn.execute(text("ALTER TABLE users ADD COLUMN password_hash VARCHAR(255)"))
-                    conn.commit()
-                except Exception as e:
-                    print(f"Migration error: {e}")
-    except Exception as e:
-        print(f"Migration Connection Error: {e}")
-        
-    yield
-
-app = FastAPI(title="Lux - AI Revolution Companion", version="1.0.0", lifespan=lifespan)
+app = FastAPI(title="Lux - AI Revolution Companion", version="1.0.0")
 
 # CORS policy
 origins = [
@@ -46,15 +21,12 @@ origins = [
     "https://blog.companain.life",
     "https://cinful.online",
     "https://www.cinful.online",
-    "https://revolution-frontend-zeta.vercel.app",
-    "https://lux-mk-frontend-cr53.vercel.app",
-    "https://lux-mk-back.vercel.app",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=["*"], # For widgets, allowing all is often easiest
+    allow_credentials=False, # Must be False if allow_origins is ["*"]
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -72,16 +44,6 @@ def read_root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
-
-@app.get("/api/db-check")
-def db_check():
-    try:
-        from sqlalchemy import text
-        with engine.connect() as conn:
-            conn.execute(text("SELECT 1"))
-        return {"status": "connected", "message": "Database is reachable"}
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
